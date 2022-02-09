@@ -9,7 +9,7 @@
     </select>
 
     <select id="selectOneActivityById" resultType="Activity">
-        select * from tbl_activity where id = #{}
+        select * from tbl_activity where id = #{id}
     </select>
 
     <select id="likeSelectAllByName" resultType="Activity">
