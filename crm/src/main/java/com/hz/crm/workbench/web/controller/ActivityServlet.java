@@ -11,6 +11,7 @@ import com.hz.crm.utils.TransactionInvocationHandler;
 import com.hz.crm.utils.UUIDUtil;
 import com.hz.crm.vo.PaginationVo;
 import com.hz.crm.workbench.domain.Activity;
+import com.hz.crm.workbench.domain.ActivityRemark;
 import com.hz.crm.workbench.service.ActivityService;
 import com.hz.crm.workbench.service.impl.ActivityServiceImpl;
 
@@ -52,15 +53,25 @@ public class ActivityServlet extends HttpServlet {
              updateActivity(request,response);
          }else if("/workbench/activity/detail.do".equals(path)){
              detailActivity(request,response);
+         }else if("/workbench/activity/getRemarkListById.do".equals(path)){
+             getRemarkListById(request,response);
          }
 
+    }
+
+    public void getRemarkListById(HttpServletRequest request, HttpServletResponse response) {
+
+            String id = request.getParameter("id");
+            ActivityService service =(ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+            List<ActivityRemark> list = service.getRemarkListById(id);
+            PrintJson.printJsonObj(response,list);
     }
 
     public void detailActivity(HttpServletRequest request, HttpServletResponse response) {
 
             String id = request.getParameter("id");
             ActivityService service =(ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
-            Activity activity =service.selectOneActivityById(id);
+             Activity activity =service.detail(id);
             request.setAttribute("activity",activity);
         try {
             request.getRequestDispatcher("/workbench/activity/detail.jsp").forward(request,response);

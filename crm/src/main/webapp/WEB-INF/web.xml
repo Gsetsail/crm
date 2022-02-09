@@ -63,5 +63,6 @@
         <url-pattern>/workbench/activity/getUserListAndActivity.do</url-pattern>
         <url-pattern>/workbench/activity/updateActivity.do</url-pattern>
         <url-pattern>/workbench/activity/detail.do</url-pattern>
+        <url-pattern>/workbench/activity/getRemarkListById.do</url-pattern>
     </servlet-mapping>
 </web-app>

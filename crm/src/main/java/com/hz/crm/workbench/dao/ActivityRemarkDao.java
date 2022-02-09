@@ -17,4 +17,8 @@ public interface ActivityRemarkDao {
     int insertOneActivityRemark(ActivityRemark activityRemark);
 
     int selectCountById(String [] id);
+
+    List<ActivityRemark> selectActivityRemarks(String id);
+
+
 }

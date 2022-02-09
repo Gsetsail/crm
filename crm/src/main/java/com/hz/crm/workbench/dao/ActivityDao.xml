@@ -82,4 +82,26 @@
     <select id="selectOneActivityByIds" resultType="Activity">
         select * from tbl_activity where id = #{id}
     </select>
+
+    <select id="detail" resultType="Activity">
+        select
+                a.id,
+                u.name as owner,
+                a.name,
+                a.startDate,
+                a.endDate,
+                a.cost,
+                a.description,
+                a.createTime,
+                a.createBy,
+                a.editTime,
+                a.editBy
+        FROM
+                tbl_activity a
+        join
+                tbl_user u
+        ON
+                a.owner=u.id
+        where a.id=#{id}
+    </select>
 </mapper>

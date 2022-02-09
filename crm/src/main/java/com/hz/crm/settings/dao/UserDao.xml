@@ -10,4 +10,8 @@
     <select id="selectAllUser" resultType="User">
         select * from tbl_user
     </select>
+
+    <select id="selectOneById" resultType="User">
+        select * from tbl_user
+    </select>
 </mapper>

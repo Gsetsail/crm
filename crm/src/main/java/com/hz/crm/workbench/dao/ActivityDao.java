@@ -25,4 +25,6 @@ public interface ActivityDao {
     int selectCount(Activity activity);
 
     Activity selectOneActivityByIds(String id);
+
+    Activity detail(String id);
 }

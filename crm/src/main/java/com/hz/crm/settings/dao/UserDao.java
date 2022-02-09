@@ -9,4 +9,6 @@ public interface UserDao {
         User selectOneByActAndPwd(User user);
 
          List<User> selectAllUser();
+
+    User selectOneById(String owner);
 }

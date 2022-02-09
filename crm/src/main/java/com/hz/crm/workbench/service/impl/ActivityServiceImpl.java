@@ -141,4 +141,22 @@ public class ActivityServiceImpl implements ActivityService {
 
         return map;
     }
+
+    @Override
+    public Activity detail(String id) {
+
+        Activity activity = dao.detail(id);
+
+        return activity;
+
+
+
+    }
+
+    @Override
+    public List<ActivityRemark> getRemarkListById(String id) {
+
+      List<ActivityRemark> list =  remarkDaoDao.selectActivityRemarks(id);
+        return list;
+    }
 }
