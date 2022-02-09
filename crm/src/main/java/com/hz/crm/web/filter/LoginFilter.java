@@ -18,9 +18,9 @@ public class LoginFilter implements Filter {
         HttpSession session = request.getSession(false);
          String contextPath = request.getContextPath();
          String servletPath = request.getServletPath();
-        System.out.println(servletPath+"====");
             if ("/setting/user/login.do".equals(servletPath) ||  "/login.jsp".equals(servletPath)) {
                     chain.doFilter(req,resp);
+
             }else if(session.getAttribute("user") != null){
                 chain.doFilter(req,resp);
 
