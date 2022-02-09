@@ -50,7 +50,25 @@ public class ActivityServlet extends HttpServlet {
              getUserListAndActivity(request,response);
          }else if ("/workbench/activity/updateActivity.do".equals(path)){
              updateActivity(request,response);
+         }else if("/workbench/activity/detail.do".equals(path)){
+             detailActivity(request,response);
          }
+
+    }
+
+    public void detailActivity(HttpServletRequest request, HttpServletResponse response) {
+
+            String id = request.getParameter("id");
+            ActivityService service =(ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+            Activity activity =service.selectOneActivityById(id);
+            request.setAttribute("activity",activity);
+        try {
+            request.getRequestDispatcher("/workbench/activity/detail.jsp").forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void updateActivity(HttpServletRequest request, HttpServletResponse response) {

@@ -335,7 +335,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 									$("#activityBody").append(
 										'<tr class="active" >'+
 										'<td><input type="checkbox" name="xz" value="'+jsonObj.id+'" /></td>'+
-										'<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/activity/detail.jsp\';">'+jsonObj.name+'</a></td>'+
+										'<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/activity/detail.do?id='+jsonObj.id+'\';">'+jsonObj.name+'</a></td>'+
 										'<td>'+jsonObj.owner+'</td>'+
 										'<td>'+jsonObj.startDate+'</td>'+
 										'<td>'+jsonObj.endDate+'</td>'
