@@ -77,6 +77,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					dataType : "json",
 					success : function(data){
 						if(data.success){
+							$("#remark").val("");
 							alert("添加成功!")
 							showRemarkList();
 						}else{
@@ -105,10 +106,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						html+='<div class="remarkDiv" style="height: 60px;">'
 						html+='<img title="zhangsan" src="image/user-thumbnail.png" style="width: 30px; height:30px;">'
 						html+='<div style="position: relative; top: -40px; left: 40px;" >'
-						html+='<h5>'+jsonObj.noteContent+'</h5>'
+						html+='<h5 id="e+'+jsonObj.id+'">'+jsonObj.noteContent+'</h5>'
 						html+='<font color="gray">市场活动</font> <font color="gray">-</font> <b>${activity.name}</b> <small style="color: gray;"> '+(jsonObj.editFlag==0 ? jsonObj.createTime:jsonObj.editTime)+' 由'+(jsonObj.editFlag==0 ? jsonObj.createBy:jsonObj.editBy)+'</small>'
 						html+='<div style="position: relative; left: 500px; top: -30px; height: 30px; width: 100px; display: none;">'
-						html+='<a class="myHref" href="javascript:void(0);"><span class="glyphicon glyphicon-edit" style="font-size: 20px; color: #FF0000;"></span></a>'
+						html+='<a class="myHref" href="javascript:void(0);" onclick="editRemark(\''+jsonObj.id+'\')"><span class="glyphicon glyphicon-edit" style="font-size: 20px; color: #FF0000;"></span></a>'
 						html+='&nbsp;&nbsp;&nbsp;&nbsp;'
 						html+='<a class="myHref" href="javascript:void(0);" onclick="deleteRemark(\''+jsonObj.id+'\')"><span class="glyphicon glyphicon-remove" style="font-size: 20px; color: #FF0000;"></span></a>'
 						html+='</div>'
@@ -142,6 +143,37 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						}
 					})
 				}
+			}
+			function editRemark(id) {
+				 $("#editRemarkModal").modal("show");
+				$("#updateRemarkBtn").click(function (){
+					var noteContent =  $.trim($("#noteContent").val());
+					if(noteContent != ""){
+						$.ajax({
+							url:"workbench/activity/updateActivityRemark.do",
+							type:"post",
+							data:{
+								"id" : id,
+								"noteContent" : noteContent
+							},
+							datatype : "json",
+							success : function (data){
+
+								if(data.success){
+									$("#noteContent").val("");
+									alert("修改成功!")
+									$("#editRemarkModal").modal("hide");
+									showRemarkList();
+								}else{
+									alert("修改失败!")
+								}
+							}
+						})
+					}else{
+						alert("请输入要修改的内容!")
+					}
+
+				})
 			}
 	</script>
 

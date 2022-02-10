@@ -56,8 +56,28 @@ public class ActivityServlet extends HttpServlet {
              deleteRemarkById(request,response);
          }else if("/workbench/activity/insertActivityRemark.do".equals(path)){
              insertActivityRemark(request,response);
+         }else if("/workbench/activity/updateActivityRemark.do".equals(path)){
+             updateActivityRemark(request,response);
          }
 
+    }
+
+    public void updateActivityRemark(HttpServletRequest request, HttpServletResponse response) {
+            String noteContent = request.getParameter("noteContent");
+            String id = request.getParameter("id");
+            String editTime = DateTimeUtil.getSysTime();
+            User user =  (User)(request.getSession(false).getAttribute("user"));
+            String editBy =  user.getName();
+            String editFlag = "1";
+            ActivityRemark activityRemark = new ActivityRemark();
+            activityRemark.setNoteContent(noteContent);
+            activityRemark.setId(id);
+            activityRemark.setEditTime(editTime);
+            activityRemark.setEditBy(editBy);
+            activityRemark.setEditFlag(editFlag);
+            ActivityService service = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+            boolean flag = service.updateActivityRemark(activityRemark);
+            PrintJson.printJsonFlag(response,flag);
     }
 
     public void insertActivityRemark(HttpServletRequest request, HttpServletResponse response) {
