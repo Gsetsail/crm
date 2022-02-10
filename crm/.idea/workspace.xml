@@ -11,10 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9700a911-5f8e-4f07-8d30-71d2c038ea9c" name="Changes" comment="更新">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/settings/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/settings/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/settings/dao/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/settings/dao/UserDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityRemarkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityRemarkDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityRemarkDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityRemarkDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ActivityService.java" afterDir="false" />
@@ -175,7 +171,7 @@
       <updated>1644381317937</updated>
       <workItem from="1644381319168" duration="1823000" />
       <workItem from="1644383293396" duration="39000" />
-      <workItem from="1644383343632" duration="13086000" />
+      <workItem from="1644383343632" duration="26280000" />
     </task>
     <task id="LOCAL-00001" summary="测试">
       <created>1644383861236</created>
@@ -198,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644388114045</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="更新">
+      <created>1644396836353</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644396836353</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

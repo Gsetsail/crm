@@ -62,6 +62,29 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			$("#remarkBody").on("mouseout",".remarkDiv",function(){
 				$(this).children("div").children("div").hide();
 			})
+
+			$("#saveBtn").click(function(){
+
+				var noteContent = $.trim($("#remark").val());
+				var activityId = "${activity.id}"
+				$.ajax({
+					url:"workbench/activity/insertActivityRemark.do",
+					type:"post",
+					data:{
+						"noteContent" : noteContent,
+						"activityId" : activityId
+					},
+					dataType : "json",
+					success : function(data){
+						if(data.success){
+							alert("添加成功!")
+							showRemarkList();
+						}else{
+							alert("添加失败!")
+						}
+					}
+				})
+			})
 		});
 
 		function showRemarkList (){
@@ -87,7 +110,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						html+='<div style="position: relative; left: 500px; top: -30px; height: 30px; width: 100px; display: none;">'
 						html+='<a class="myHref" href="javascript:void(0);"><span class="glyphicon glyphicon-edit" style="font-size: 20px; color: #FF0000;"></span></a>'
 						html+='&nbsp;&nbsp;&nbsp;&nbsp;'
-						html+='<a class="myHref" href="javascript:void(0);"><span class="glyphicon glyphicon-remove" style="font-size: 20px; color: #FF0000;"></span></a>'
+						html+='<a class="myHref" href="javascript:void(0);" onclick="deleteRemark(\''+jsonObj.id+'\')"><span class="glyphicon glyphicon-remove" style="font-size: 20px; color: #FF0000;"></span></a>'
 						html+='</div>'
 						html+='</div>'
 						html+='</div>'
@@ -97,7 +120,29 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 			})
 		}
+			function deleteRemark(id){
 
+				if(window.confirm("确定要删除吗")){
+
+					$.ajax({
+						url:"workbench/activity/deleteRemarkById.do",
+						type:"post",
+						data:{
+							"id":id
+						},
+						dataType: "json",
+						success:function (data){
+
+							if(data.success){
+								alert("删除成功")
+								showRemarkList()
+							}else {
+								alert("删除失败")
+							}
+						}
+					})
+				}
+			}
 	</script>
 
 </head>
@@ -278,7 +323,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<textarea id="remark" class="form-control" style="width: 850px; resize : none;" rows="2"  placeholder="添加备注..."></textarea>
 			<p id="cancelAndSaveBtn" style="position: relative;left: 737px; top: 10px; display: none;">
 				<button id="cancelBtn" type="button" class="btn btn-default">取消</button>
-				<button type="button" class="btn btn-primary">保存</button>
+				<button type="button" class="btn btn-primary" id="saveBtn">保存</button>
 			</p>
 		</form>
 	</div>

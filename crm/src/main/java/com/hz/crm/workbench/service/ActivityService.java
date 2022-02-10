@@ -31,4 +31,8 @@ public interface ActivityService {
     Activity detail(String id);
 
     List<ActivityRemark> getRemarkListById(String id);
+
+    boolean deleteRemarkById(String activityRemarkId);
+
+    boolean insertActivityRemark(ActivityRemark activityRemark);
 }

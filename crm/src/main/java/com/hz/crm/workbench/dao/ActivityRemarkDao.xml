@@ -17,7 +17,8 @@
     </update>
 
     <insert id="insertOneActivityRemark">
-
+        insert into tbl_activity_remark (id, noteContent, createTime, createBy,editFlag,activityId)
+            values(#{id},#{noteContent},#{createTime},#{createBy},#{editFlag},#{activityId})
     </insert>
 
     <delete id="deleteActivityRemarkById">
@@ -38,5 +39,7 @@
         select * from tbl_activity_remark where activityId = #{id}
     </select>
 
-
+    <delete id="deleteRemarkById">
+        delete from tbl_activity_remark where id = #{activityRemarkId}
+    </delete>
 </mapper>

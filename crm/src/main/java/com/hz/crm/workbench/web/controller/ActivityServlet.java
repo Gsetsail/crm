@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hz.crm.settings.domain.User;
 import com.hz.crm.settings.service.UserService;
 import com.hz.crm.settings.service.impl.UserServiceImpl;
-import com.hz.crm.utils.PrintJson;
-import com.hz.crm.utils.ServiceFactory;
-import com.hz.crm.utils.TransactionInvocationHandler;
-import com.hz.crm.utils.UUIDUtil;
+import com.hz.crm.utils.*;
 import com.hz.crm.vo.PaginationVo;
 import com.hz.crm.workbench.domain.Activity;
 import com.hz.crm.workbench.domain.ActivityRemark;
@@ -55,7 +52,38 @@ public class ActivityServlet extends HttpServlet {
              detailActivity(request,response);
          }else if("/workbench/activity/getRemarkListById.do".equals(path)){
              getRemarkListById(request,response);
+         }else if("/workbench/activity/deleteRemarkById.do".equals(path)){
+             deleteRemarkById(request,response);
+         }else if("/workbench/activity/insertActivityRemark.do".equals(path)){
+             insertActivityRemark(request,response);
          }
+
+    }
+
+    public void insertActivityRemark(HttpServletRequest request, HttpServletResponse response) {
+            String noteContent = request.getParameter("noteContent");
+            String activityId = request.getParameter("activityId");
+            String id = UUIDUtil.getUUID();
+            String createTime = DateTimeUtil.getSysTime();
+            User user = (User)(request.getSession(false).getAttribute("user"));
+            String createBy = user.getName();
+            ActivityRemark activityRemark = new ActivityRemark();
+            activityRemark.setId(id);
+            activityRemark.setNoteContent(noteContent);
+            activityRemark.setCreateTime(createTime);
+            activityRemark.setCreateBy(createBy);
+            activityRemark.setActivityId(activityId);
+            activityRemark.setEditFlag("0");
+            ActivityService service = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+            boolean flag = service.insertActivityRemark(activityRemark);
+            PrintJson.printJsonFlag(response,flag);
+    }
+
+    public void deleteRemarkById(HttpServletRequest request, HttpServletResponse response) {
+            String activityRemarkId = request.getParameter("id");
+        ActivityService service =(ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+            boolean flag = service.deleteRemarkById(activityRemarkId);
+         PrintJson.printJsonFlag(response,flag);
 
     }
 
