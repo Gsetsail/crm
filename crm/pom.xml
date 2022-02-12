@@ -33,7 +33,6 @@
       <version>2.1</version>
       <scope>provided</scope>
     </dependency>
-  <!--Servlet依赖-->
     
     <!--mybatis依赖-->
     <dependency>
@@ -49,6 +48,7 @@
       <version>8.0.27</version>
     </dependency>
 
+
     <!--Tomcat依赖-->
     <dependency>
       <groupId>org.apache.tomcat</groupId>
@@ -57,7 +57,17 @@
       <scope>provided</scope>
     </dependency>
 
-  <!--jackson依赖-->
+
+
+    <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+
+    <!--jackson依赖-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>

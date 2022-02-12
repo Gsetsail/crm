@@ -39,7 +39,11 @@
         <url-pattern>*.do</url-pattern>
         <url-pattern>*.jsp</url-pattern>
     </filter-mapping>
-    <!--登录模块-->
+    <!--监听全局作用域对象创建,存放数据字典-->
+    <listener>
+        <listener-class>com.hz.crm.web.listener.SysInitListener</listener-class>
+    </listener>
+    <!--登录控制器-->
     <servlet>
         <servlet-name>userController</servlet-name>
         <servlet-class>com.hz.crm.settings.web.controller.UserController</servlet-class>
@@ -49,13 +53,13 @@
         <url-pattern>/setting/user/login.do</url-pattern>
     </servlet-mapping>
 
-    <!--工作台模块-->
+    <!--工作台控制器-->
     <servlet>
-        <servlet-name>ActivityServlet</servlet-name>
+        <servlet-name>activityServlet</servlet-name>
         <servlet-class>com.hz.crm.workbench.web.controller.ActivityServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ActivityServlet</servlet-name>
+        <servlet-name>activityServlet</servlet-name>
         <url-pattern>/workbench/activity/getUserList.do</url-pattern>
         <url-pattern>/workbench/activity/insertActivity.do</url-pattern>
         <url-pattern>/workbench/activity/pageList.do</url-pattern>
@@ -67,5 +71,26 @@
         <url-pattern>/workbench/activity/deleteRemarkById.do</url-pattern>
         <url-pattern>/workbench/activity/insertActivityRemark.do</url-pattern>
         <url-pattern>/workbench/activity/updateActivityRemark.do</url-pattern>
+    </servlet-mapping>
+
+    <!--线索控制器-->
+    <servlet>
+        <servlet-name>clueServlet</servlet-name>
+        <servlet-class>com.hz.crm.workbench.web.controller.ClueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clueServlet</servlet-name>
+        <url-pattern>/workbench/clue/getUserList.do</url-pattern>
+        <url-pattern>/workbench/clue/insertOneClue.do</url-pattern>
+        <url-pattern>/workbench/clue/detail.do</url-pattern>
+    </servlet-mapping>
+    <!--字典控制器-->
+    <servlet>
+        <servlet-name>dicServlet</servlet-name>
+        <servlet-class>com.hz.crm.settings.web.controller.DicServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dicServlet</servlet-name>
+        <url-pattern>/settings/Dic/xxx.do</url-pattern>
     </servlet-mapping>
 </web-app>

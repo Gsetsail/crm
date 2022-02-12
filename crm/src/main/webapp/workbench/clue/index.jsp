@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
 %>
@@ -19,7 +20,86 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <script type="text/javascript">
 
 	$(function(){
-		
+
+		$(".time").datetimepicker({
+			minView: "month",
+			language:  'zh-CN',
+			format: 'yyyy-mm-dd',
+			autoclose: true,
+			todayBtn: true,
+			pickerPosition: "top-left"
+		});
+			$("#createBtn").click(function(){
+				$.ajax({
+					url : "workbench/clue/getUserList.do",
+					type:"get",
+					dataType: "json",
+					success : function(data){
+						var html = "<option></option>";
+						$.each(data,function(index,jsonObj){
+							 html += "<option value='"+jsonObj.id+"'>"+jsonObj.name+"</option>"
+						})
+
+						$("#create-clueOwner").html(html);
+						var id = "${user.id}"
+						$("#create-clueOwner").val(id);
+					}
+				})
+				$("#createClueModal").modal("show")
+
+				})
+					$("#saveBtn").click(function(){
+
+						var fullname = $.trim($("#create-surname").val());
+						var appellation = $("#create-call>option:selected").val();
+						var owner = $("#create-clueOwner>option:selected").val();
+						var company = $.trim($("#create-company").val());
+						var job = $.trim($("#create-job").val());
+						var email = $.trim($("#create-email").val());
+						var phone = $.trim($("#create-phone").val());
+						var website = $.trim($("#create-website").val());
+						var mphone = $.trim($("#create-mphone").val());
+						var state = $("#create-status>option:selected").val();
+						var source = $("#create-source>option:selected").val();
+						var description = $.trim($("#create-describe").val());
+						var contactSummary = $.trim($("#create-contactSummary").val());
+						var nextContactTime = $.trim($("#create-nextContactTime").val());
+						var address = $.trim($("#create-address").val());
+
+							$.ajax({
+								url : "workbench/clue/insertOneClue.do",
+								type : "post",
+								data : {
+									"fullname" : fullname,
+									"appellation" : appellation,
+									"owner" : owner,
+									"company" : company,
+									"job" : job,
+									"email" :email,
+									"phone" :phone,
+									"website" :website,
+									"mphone" :mphone,
+									"state" :state,
+									"source" :source,
+									"description" :description,
+									"contactSummary" :contactSummary,
+									"nextContactTime" :nextContactTime,
+									"address" :address
+								},
+								success : function(data){
+									if(data.success){
+										alert("添加成功!")
+										$("#addClueForm")[0].reset();
+										$("#createClueModal").modal("hide")
+									}else{
+										alert("添加失败!")
+										$("#addClueForm")[0].reset();
+										$("#createClueModal").modal("hide")
+									}
+								}
+							})
+
+					})
 		
 		
 	});
@@ -39,15 +119,12 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<h4 class="modal-title" id="myModalLabel">创建线索</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" id="addClueForm">
 					
 						<div class="form-group">
 							<label for="create-clueOwner" class="col-sm-2 control-label">所有者<span style="font-size: 15px; color: red;">*</span></label>
 							<div class="col-sm-10" style="width: 300px;">
 								<select class="form-control" id="create-clueOwner">
-								  <option>zhangsan</option>
-								  <option>lisi</option>
-								  <option>wangwu</option>
 								</select>
 							</div>
 							<label for="create-company" class="col-sm-2 control-label">公司<span style="font-size: 15px; color: red;">*</span></label>
@@ -60,12 +137,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<label for="create-call" class="col-sm-2 control-label">称呼</label>
 							<div class="col-sm-10" style="width: 300px;">
 								<select class="form-control" id="create-call">
-								  <option></option>
-								  <option>先生</option>
-								  <option>夫人</option>
-								  <option>女士</option>
-								  <option>博士</option>
-								  <option>教授</option>
+									<c:forEach items="${appellation}" var="a">
+										<option value="${a.value}">${a.text}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<label for="create-surname" class="col-sm-2 control-label">姓名<span style="font-size: 15px; color: red;">*</span></label>
@@ -104,14 +178,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<label for="create-status" class="col-sm-2 control-label">线索状态</label>
 							<div class="col-sm-10" style="width: 300px;">
 								<select class="form-control" id="create-status">
-								  <option></option>
-								  <option>试图联系</option>
-								  <option>将来联系</option>
-								  <option>已联系</option>
-								  <option>虚假线索</option>
-								  <option>丢失线索</option>
-								  <option>未联系</option>
-								  <option>需要条件</option>
+									<c:forEach items="${clueState}" var="a">
+										<option value="${a.value}">${a.text}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -120,21 +189,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<label for="create-source" class="col-sm-2 control-label">线索来源</label>
 							<div class="col-sm-10" style="width: 300px;">
 								<select class="form-control" id="create-source">
-								  <option></option>
-								  <option>广告</option>
-								  <option>推销电话</option>
-								  <option>员工介绍</option>
-								  <option>外部介绍</option>
-								  <option>在线商场</option>
-								  <option>合作伙伴</option>
-								  <option>公开媒介</option>
-								  <option>销售邮件</option>
-								  <option>合作伙伴研讨会</option>
-								  <option>内部研讨会</option>
-								  <option>交易会</option>
-								  <option>web下载</option>
-								  <option>web调研</option>
-								  <option>聊天</option>
+									<c:forEach items="${source}" var="a">
+										<option value="${a.value}">${a.text}</option>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -159,7 +216,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<div class="form-group">
 								<label for="create-nextContactTime" class="col-sm-2 control-label">下次联系时间</label>
 								<div class="col-sm-10" style="width: 300px;">
-									<input type="text" class="form-control" id="create-nextContactTime">
+									<input type="text" class="form-control time" id="create-nextContactTime">
 								</div>
 							</div>
 						</div>
@@ -179,7 +236,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+					<button type="button" class="btn btn-primary" id="saveBtn">保存</button>
 				</div>
 			</div>
 		</div>
@@ -443,7 +500,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</div>
 			<div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 40px;">
 				<div class="btn-group" style="position: relative; top: 18%;">
-				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createClueModal"><span class="glyphicon glyphicon-plus"></span> 创建</button>
+				  <button type="button" class="btn btn-primary" id="createBtn"><span class="glyphicon glyphicon-plus"></span> 创建</button>
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editClueModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
 				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
@@ -467,7 +524,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<tbody>
 						<tr>
 							<td><input type="checkbox" /></td>
-							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.jsp';">李四先生</a></td>
+							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=05b0ca0fce954f00a89ab7696ea3793c';">马云先生</a></td>
 							<td>动力节点</td>
 							<td>010-84846003</td>
 							<td>12345678901</td>

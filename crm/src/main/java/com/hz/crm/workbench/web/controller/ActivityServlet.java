@@ -1,7 +1,6 @@
 package com.hz.crm.workbench.web.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.hz.crm.settings.domain.User;
 import com.hz.crm.settings.service.UserService;
 import com.hz.crm.settings.service.impl.UserServiceImpl;
@@ -12,18 +11,16 @@ import com.hz.crm.workbench.domain.ActivityRemark;
 import com.hz.crm.workbench.service.ActivityService;
 import com.hz.crm.workbench.service.impl.ActivityServiceImpl;
 
-import javax.servlet.ServletContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Service;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -121,6 +118,7 @@ public class ActivityServlet extends HttpServlet {
             ActivityService service =(ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
              Activity activity =service.detail(id);
             request.setAttribute("activity",activity);
+
         try {
             request.getRequestDispatcher("/workbench/activity/detail.jsp").forward(request,response);
         } catch (ServletException e) {
