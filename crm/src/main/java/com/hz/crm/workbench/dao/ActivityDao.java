@@ -1,18 +1,19 @@
 package com.hz.crm.workbench.dao;
 
-import com.hz.crm.settings.domain.User;
-import com.hz.crm.vo.PaginationVo;
 import com.hz.crm.workbench.domain.Activity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface ActivityDao {
 
+  List<Activity> getActivityListByClueId(String clueId);
+
     List<Activity> selectAllActivity();
 
     Activity selectOneActivityById(String id);
 
-    List<Activity> likeSelectAllByName(String name);
+    List<Activity> likeSelectAllByName(@Param("name")String name, @Param("clueId") String clueId);
 
     int updateActivityById(Activity activity);
 
@@ -27,4 +28,6 @@ public interface ActivityDao {
     Activity selectOneActivityByIds(String id);
 
     Activity detail(String id);
+
+    List<Activity> getActivityListByNameLike(String name);
 }

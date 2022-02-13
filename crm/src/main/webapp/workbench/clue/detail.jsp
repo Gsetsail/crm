@@ -51,13 +51,141 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		$(".myHref").mouseout(function(){
 			$(this).children("span").css("color","#E6E6E6");
 		});
+
+			// 页面加载完毕后,取出关联的市场活动信息列表
+			showActivityList();
+		$("#addBtn").click(function (){
+			$("#bundModal").modal("show")
+			$("#activityByName").keydown(function (event) {
+				if(event.keyCode==13){
+
+					var name = $.trim($("#activityByName").val());
+					var clueId =  "${clue.id}"
+					if(name != ""){
+						$.ajax({
+							url : "workbench/clue/getActivityList.do",
+							type : "get",
+							data : {
+								"name" : name,
+								"clueId" : clueId
+							},
+							datatype: "json",
+							success : function(data){
+								//[{市场活动1},{2},{3}...]
+								var html = "";
+								$.each(data,function(index,jsonObj){
+									html += '<tr>'
+									html += '<td><input type="checkbox" name="xz" value="'+jsonObj.id+'"/></td>'
+									html += '<td>'+jsonObj.name+'</td>'
+									html += '<td>'+jsonObj.startDate+'</td>'
+									html += '<td>'+jsonObj.endDate+'</td>'
+									html += '<td>'+jsonObj.owner+'</td>'
+									html += '</tr>'
+								})
+								$("#activity-msg").html(html);
+							}
+						})
+					}
+
+							return false;
+				}
+
+			})
+
+		})
+			$("#relationBtn").click(function(){
+				var idArr = $("input[name=xz]:checked");
+				if(idArr.length==0){
+					alert("请选择要关联的市场活动")
+				}else{
+					var id = "clueId=${clue.id}&";
+					var count = 0;
+					$.each(idArr,function(index,obj){
+
+						id += "ActivityId="+obj.value;
+						if(count<idArr.length-1){
+							id += "&";
+						}
+						count++;
+					})
+						alert(id)
+					 $.ajax({
+						url : "workbench/clue/insertRelation.do",
+						type:"post",
+						data : id,
+						datatype: "json",
+						success : function(data){
+							// {"success",boolean}
+							if(data.success){
+								alert("添加成功!")
+								$("#bundModal").modal("hide")
+								showActivityList();
+							}else{
+								alert("添加失败!")
+							}
+						}
+					})
+				}
+				})
+
+
+
 	});
+	function showActivityList(){
+		var clueId = "${clue.id}"
+		$.ajax({
+			url : "workbench/clue/getActivityListByClueId.do",
+			type : "get",
+			data : {
+				"clueId" : clueId
+			},
+			success : function(data){
+				//[{市场活动1},{市场活动2}...]
+				html = "";
+				$.each(data,function(index,jsonObj){
+					html += '<tr>';
+					html += '<td>'+jsonObj.name+'</td>';
+					html += '<td>'+jsonObj.startDate+'</td>';
+					html += '<td>'+jsonObj.endDate+'</td>';
+					html += '<td>'+jsonObj.owner+'</td>';
+					html += '<td><a href="javascript:void(0);" onclick="unbund(\''+jsonObj.id+'\')" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>';
+					html += '</tr>';
+				})
+
+					$("#activity-m").html(html);
+			}
+		})
+	}
+
+	 function unbund(id){
+
+		if(window.confirm("您确定要解除吗?")){
+			$.ajax({
+				url : "workbench/clue/unbund.do",
+				type : "post",
+				data : {
+					"id" : id
+				},
+				 success : function(data){
+					if(data.success){
+						alert("解除成功!")
+						showActivityList();
+
+					}else{
+						alert("解除失败!")
+					}
+				}
+
+			})
+		}
+
+	 }
 	
 </script>
 
 </head>
 <body>
-
+<input type="hidden" id="ac">
 	<!-- 关联市场活动的模态窗口 -->
 	<div class="modal fade" id="bundModal" role="dialog">
 		<div class="modal-dialog" role="document" style="width: 80%;">
@@ -72,7 +200,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<div class="btn-group" style="position: relative; top: 18%; left: 8px;">
 						<form class="form-inline" role="form">
 						  <div class="form-group has-feedback">
-						    <input type="text" class="form-control" style="width: 300px;" placeholder="请输入市场活动名称，支持模糊查询">
+						    <input type="text" class="form-control" style="width: 300px;" id="activityByName" placeholder="请输入市场活动名称，支持模糊查询">
 						    <span class="glyphicon glyphicon-search form-control-feedback"></span>
 						  </div>
 						</form>
@@ -88,27 +216,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 								<td></td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td><input type="checkbox"/></td>
-								<td>发传单</td>
-								<td>2020-10-10</td>
-								<td>2020-10-20</td>
-								<td>zhangsan</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox"/></td>
-								<td>发传单</td>
-								<td>2020-10-10</td>
-								<td>2020-10-20</td>
-								<td>zhangsan</td>
-							</tr>
+						<tbody id="activity-msg">
 						</tbody>
 					</table>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">关联</button>
+					<button type="button" class="btn btn-primary" id="relationBtn">关联</button>
 				</div>
 			</div>
 		</div>
@@ -281,7 +395,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			<h3>${clue.owner} <small>动力节点</small></h3>
 		</div>
 		<div style="position: relative; height: 50px; width: 500px;  top: -72px; left: 700px;">
-			<button type="button" class="btn btn-default" onclick="window.location.href='workbench/clue/convert.jsp';"><span class="glyphicon glyphicon-retweet"></span> 转换</button>
+			<button type="button" class="btn btn-default" onclick="window.location.href='workbench/clue/convert.jsp?id=${clue.id}&fullname=${clue.fullname}&appellation=${clue.appellation}&company=${clue.company}&owner=${clue.owner}';"><span class="glyphicon glyphicon-retweet"></span> 转换</button>
 			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#editClueModal"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
 			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 		</div>
@@ -291,9 +405,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<div style="position: relative; top: -70px;">
 		<div style="position: relative; left: 40px; height: 30px;">
 			<div style="width: 300px; color: gray;">名称</div>
-			<div style="width: 300px;position: relative; left: 200px; top: -20px;"><b>${clue.owner}${clue.appellation}</b></div>
+			<div style="width: 300px;position: relative; left: 200px; top: -20px;"><b>${clue.fullname}${clue.appellation}</b></div>
 			<div style="width: 300px;position: relative; left: 450px; top: -40px; color: gray;">所有者</div>
-			<div style="width: 300px;position: relative; left: 650px; top: -60px;"><b>${clue.createBy}</b></div>
+			<div style="width: 300px;position: relative; left: 650px; top: -60px;"><b>${clue.owner}</b></div>
 			<div style="height: 1px; width: 400px; background: #D5D5D5; position: relative; top: -60px;"></div>
 			<div style="height: 1px; width: 400px; background: #D5D5D5; position: relative; top: -60px; left: 450px;"></div>
 		</div>
@@ -435,27 +549,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<td></td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>发传单</td>
-							<td>2020-10-10</td>
-							<td>2020-10-20</td>
-							<td>zhangsan</td>
-							<td><a href="javascript:void(0);"  style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
-						</tr>
-						<tr>
-							<td>发传单</td>
-							<td>2020-10-10</td>
-							<td>2020-10-20</td>
-							<td>zhangsan</td>
-							<td><a href="javascript:void(0);"  style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
-						</tr>
+					<tbody id="activity-m">
+
 					</tbody>
 				</table>
 			</div>
 			
 			<div>
-				<a href="javascript:void(0);" data-toggle="modal" data-target="#bundModal" style="text-decoration: none;"><span class="glyphicon glyphicon-plus"></span>关联市场活动</a>
+				<a href="javascript:void(0);"  id="addBtn" style="text-decoration: none;"><span class="glyphicon glyphicon-plus"></span>关联市场活动</a>
 			</div>
 		</div>
 	</div>

@@ -13,7 +13,13 @@
     </select>
 
     <select id="likeSelectAllByName" resultType="Activity">
-        select * from tbl_activity where name like '%' #{name} '%'
+        select  a.id,a.name,a.startDate,a.endDate,u.name as owner
+        from tbl_activity a
+        join tbl_user u
+        on a.owner = u.id
+        where a.name like '%' #{name} '%' and a.id not in(
+            select activityId from tbl_clue_activity_relation where clueId = #{clueId}
+        )
     </select>
 
     <update id="updateActivityById" >
@@ -103,5 +109,33 @@
         ON
                 a.owner=u.id
         where a.id=#{id}
+    </select>
+
+    <select id="getActivityListByClueId" resultType="Activity">
+        select
+            r.id as id,
+            a.name,
+            a.startDate,
+            a.endDate,
+            u.name as owner
+        from tbl_activity a
+        join tbl_user u
+        on a.owner = u.id
+        join tbl_clue_activity_relation r
+        on a.id = r.activityId
+        where r.clueId = #{clueId}
+    </select>
+
+    <select id="getActivityListByNameLike" resultType="Activity">
+        select
+        a.id,
+        a.name,
+        a.startDate,
+        a.endDate,
+        u.name as owner
+        from tbl_activity a
+        join tbl_user u
+        on a.owner = u.id
+        where a.name like '%' #{name} '%'
     </select>
 </mapper>

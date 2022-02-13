@@ -1,6 +1,5 @@
 package com.hz.crm.workbench.service;
 
-import com.hz.crm.settings.domain.User;
 import com.hz.crm.vo.PaginationVo;
 import com.hz.crm.workbench.domain.Activity;
 import com.hz.crm.workbench.domain.ActivityRemark;
@@ -14,7 +13,7 @@ public interface ActivityService {
 
     Activity selectOneActivityById(String id);
 
-    List<Activity> likeSelectAllByName(String name);
+    List<Activity> likeSelectAllByName(String name, String clueId);
 
     boolean updateActivityById(Activity activity);
 
@@ -37,4 +36,8 @@ public interface ActivityService {
     boolean insertActivityRemark(ActivityRemark activityRemark);
 
     boolean updateActivityRemark(ActivityRemark activityRemark);
+
+    List<Activity> getActivityListByClueId(String clueId);
+
+    List<Activity> getActivityListByNameLike(String name);
 }

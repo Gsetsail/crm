@@ -83,6 +83,11 @@
         <url-pattern>/workbench/clue/getUserList.do</url-pattern>
         <url-pattern>/workbench/clue/insertOneClue.do</url-pattern>
         <url-pattern>/workbench/clue/detail.do</url-pattern>
+        <url-pattern>/workbench/clue/getActivityListByClueId.do</url-pattern>
+        <url-pattern>/workbench/clue/unbund.do</url-pattern>
+        <url-pattern>/workbench/clue/getActivityList.do</url-pattern>
+        <url-pattern>/workbench/clue/insertRelation.do</url-pattern>
+        <url-pattern>/workbench/clue/getActivityListByLike.do</url-pattern>
     </servlet-mapping>
     <!--字典控制器-->
     <servlet>

@@ -1,11 +1,9 @@
 package com.hz.crm.workbench.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.hz.crm.settings.dao.UserDao;
 import com.hz.crm.settings.domain.User;
 import com.hz.crm.utils.SqlSessionUtil;
-import com.hz.crm.utils.UUIDUtil;
 import com.hz.crm.vo.PaginationVo;
 import com.hz.crm.workbench.dao.ActivityDao;
 import com.hz.crm.workbench.dao.ActivityRemarkDao;
@@ -13,7 +11,6 @@ import com.hz.crm.workbench.domain.Activity;
 import com.hz.crm.workbench.domain.ActivityRemark;
 import com.hz.crm.workbench.service.ActivityService;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ActivityServiceImpl implements ActivityService {
@@ -43,7 +40,13 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public List<Activity> likeSelectAllByName(String name) {
+    public List<Activity> likeSelectAllByName(String name, String clueId) {
+
+       List<Activity> aList =  dao.likeSelectAllByName(name,clueId);
+
+        if(aList != null){
+            return aList;
+        }
 
         return null;
     }
@@ -196,5 +199,22 @@ public class ActivityServiceImpl implements ActivityService {
         }
 
         return flag;
+    }
+
+    @Override
+    public List<Activity> getActivityListByClueId(String clueId) {
+
+        List<Activity> activityList =  dao.getActivityListByClueId(clueId);
+
+
+        return activityList;
+    }
+
+    @Override
+    public List<Activity> getActivityListByNameLike(String name) {
+
+       List<Activity> aList =  dao.getActivityListByNameLike(name);
+
+        return aList;
     }
 }

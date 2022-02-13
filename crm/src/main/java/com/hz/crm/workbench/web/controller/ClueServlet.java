@@ -7,8 +7,11 @@ import com.hz.crm.utils.DateTimeUtil;
 import com.hz.crm.utils.PrintJson;
 import com.hz.crm.utils.ServiceFactory;
 import com.hz.crm.utils.UUIDUtil;
+import com.hz.crm.workbench.domain.Activity;
 import com.hz.crm.workbench.domain.Clue;
+import com.hz.crm.workbench.service.ActivityService;
 import com.hz.crm.workbench.service.ClueService;
+import com.hz.crm.workbench.service.impl.ActivityServiceImpl;
 import com.hz.crm.workbench.service.impl.ClueServiceImpl;
 
 import javax.servlet.ServletException;
@@ -36,7 +39,55 @@ public class ClueServlet extends HttpServlet {
             insertOneClue(request,response);
         }else if("/workbench/clue/detail.do".equals(path)){
             clueDetail(request,response);
+        }else if ("/workbench/clue/getActivityListByClueId.do".equals(path)){
+            getActivityListByClueId(request,response);
+        } else if ("/workbench/clue/unbund.do".equals(path)) {
+            unbund(request,response);
+        }else if("/workbench/clue/getActivityList.do".equals(path)){
+            getActivityListByLike(request,response);
+        }else if("/workbench/clue/insertRelation.do".equals(path)){
+            insertRelation(request,response);
+        }else if("/workbench/clue/getActivityListByLike.do".equals(path)){
+            getActivityListByNameLike(request,response);
         }
+
+    }
+
+    public void getActivityListByNameLike(HttpServletRequest request, HttpServletResponse response) {
+            String name = request.getParameter("name");
+            ActivityService service = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+            List<Activity> aList = service.getActivityListByNameLike(name);
+            PrintJson.printJsonObj(response,aList);
+    }
+
+    public void insertRelation(HttpServletRequest request, HttpServletResponse response) {
+            String [] ActivityId = request.getParameterValues("ActivityId");
+            String clueId = request.getParameter("clueId");
+            ClueService service = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+            boolean flag = service.insertRelation(ActivityId,clueId);
+            PrintJson.printJsonFlag(response,flag);
+    }
+
+    public void getActivityListByLike(HttpServletRequest request, HttpServletResponse response) {
+             String name = request.getParameter("name");
+             String clueId =request.getParameter("clueId");
+             ActivityService service = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+             List<Activity> aList = service.likeSelectAllByName(name,clueId);
+             PrintJson.printJsonObj(response,aList);
+    }
+
+    public void unbund(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        ClueService service = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+        boolean flag = service.unbund(id);
+        PrintJson.printJsonFlag(response,flag);
+    }
+
+    public void getActivityListByClueId(HttpServletRequest request, HttpServletResponse response) {
+         String clueId = request.getParameter("clueId");
+        ActivityService service = (ActivityService)ServiceFactory.getService(new ActivityServiceImpl());
+        List<Activity> activityList = service.getActivityListByClueId(clueId);
+        PrintJson.printJsonObj(response,activityList);
 
     }
 
