@@ -1,5 +1,7 @@
 package com.hz.crm.web.listener;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hz.crm.settings.dao.DicTypeDao;
 import com.hz.crm.settings.dao.DicValueDao;
 import com.hz.crm.settings.domain.DicValue;
@@ -7,13 +9,12 @@ import com.hz.crm.settings.service.DicService;
 import com.hz.crm.settings.service.impl.DicServiceImpl;
 import com.hz.crm.utils.ServiceFactory;
 import com.hz.crm.utils.SqlSessionUtil;
+import org.apache.catalina.mapper.Mapper;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class SysInitListener implements ServletContextListener {
 
@@ -39,8 +40,26 @@ public class SysInitListener implements ServletContextListener {
             List<DicValue> dicValues = map.get(key);
             application.setAttribute(key,dicValues);
         }
+        // =========================================================================
+        HashMap<String,String> pMap = new HashMap<>();
+        ResourceBundle bundle = ResourceBundle.getBundle("Stage2Possibility");
+        Enumeration<String> keys = bundle.getKeys();
+        while(keys.hasMoreElements()){
+            // 阶段
+            String key = keys.nextElement();
+            // 可能性
+            String value = bundle.getString(key);
 
+            pMap.put(key,value);
+        }
+        ObjectMapper om = new ObjectMapper();
 
+        try {
+            String json = om.writeValueAsString(pMap);
+            application.setAttribute("pMap",json);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

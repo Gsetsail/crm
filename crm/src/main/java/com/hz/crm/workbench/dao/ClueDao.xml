@@ -57,6 +57,36 @@
          on c.owner = u.id
          where c.id=#{id}
      </select>
+
+	 <select id="selectOneClueById" resultType="Clue">
+         select
+          id,
+          fullname,
+          appellation,
+          owner,
+          company,
+          job,
+          email,
+          phone,
+          website,
+          mphone,
+          state,
+          source,
+          createBy,
+          createTime,
+          editBy,
+          editTime,
+          description,
+          contactSummary,
+          nextContactTime,
+          address
+          from tbl_clue
+          where id = #{clueId}
+    </select>
+
+	 <delete id="deleteClueById">
+         delete from tbl_clue where Id = #{clueId}
+    </delete>
 </mapper>
 
 

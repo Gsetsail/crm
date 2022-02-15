@@ -12,6 +12,18 @@
 <insert id="insertRelation">
         insert into tbl_clue_activity_relation(id,clueId,activityId) values (#{id},#{clueId},#{activityId})
 </insert>
+
+<delete id="deleteOneByActivityIdAndClueId">
+        delete from tbl_clue_activity_relation where clueId = #{clueId} and activityId= #{activityId}
+        </delete>
+
+<select id="selectOneActivityIdById" resultType="ClueActivityRelation">
+        select * from tbl_clue_activity_relation where
+        </select>
+
+<select id="selectActivityId" resultType="ClueActivityRelation">
+        select * from tbl_clue_activity_relation where clueId = #{clueId}
+        </select>
 </mapper>
 
 

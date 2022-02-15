@@ -9,6 +9,7 @@ import com.hz.crm.utils.ServiceFactory;
 import com.hz.crm.utils.UUIDUtil;
 import com.hz.crm.workbench.domain.Activity;
 import com.hz.crm.workbench.domain.Clue;
+import com.hz.crm.workbench.domain.Tran;
 import com.hz.crm.workbench.service.ActivityService;
 import com.hz.crm.workbench.service.ClueService;
 import com.hz.crm.workbench.service.impl.ActivityServiceImpl;
@@ -49,7 +50,48 @@ public class ClueServlet extends HttpServlet {
             insertRelation(request,response);
         }else if("/workbench/clue/getActivityListByLike.do".equals(path)){
             getActivityListByNameLike(request,response);
+        }else if("/workbench/clue/convert.do".equals(path)){
+            convert(request,response);
         }
+
+    }
+
+    public void convert(HttpServletRequest request, HttpServletResponse response) {
+
+            String clueId = request.getParameter("clueId");
+            ClueService service =(ClueService)ServiceFactory.getService(new ClueServiceImpl());
+            String flag = request.getParameter("flag");
+            Tran tran = null;
+            User user =(User)request.getSession(false).getAttribute("user");
+        // 接收是否需要创建交易的标记
+                if("a".equals(flag)){
+                    tran = new Tran();
+                    String activityId = request.getParameter("activityId");
+                    String money = request.getParameter("money");
+                    String name = request.getParameter("name");
+                    String expectedDate = request.getParameter("expectedDate");
+                    String stage = request.getParameter("stage");
+                    String id = UUIDUtil.getUUID();
+                    String createBy = user.getName();
+                    String createTime = DateTimeUtil.getSysTime();
+                    tran.setId(id);
+                    tran.setActivityId(activityId);
+                    tran.setMoney(money);
+                    tran.setName(name);
+                    tran.setExpectedDate(expectedDate);
+                    tran.setStage(stage);
+                    tran.setCreateBy(createBy);
+                    tran.setCreateTime(createTime);
+                }
+                 boolean f = service.insertCustomerAndContactsByClueId(clueId,tran,user);
+            if(f){
+                try {
+                    response.sendRedirect(request.getContextPath()+"/workbench/clue/index.jsp");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
 
     }
 

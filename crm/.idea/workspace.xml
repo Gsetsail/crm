@@ -9,22 +9,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9700a911-5f8e-4f07-8d30-71d2c038ea9c" name="Changes" comment="更新4.0">
+    <list default="true" id="9700a911-5f8e-4f07-8d30-71d2c038ea9c" name="Changes" comment="更新5.0">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ContactsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/TranService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/ContactsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/TranServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/web/controller/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/web/controller/TranServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Stage2Possibility.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jquery/bs_typeahead/bootstrap3-typeahead.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/settings/dao/DicValueDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/settings/dao/DicValueDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ActivityDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/web/listener/SysInitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/web/listener/SysInitListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueActivityRelationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueActivityRelationDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueActivityRelationDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueActivityRelationDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/domain/Tran.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/domain/Tran.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ActivityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ActivityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueRemarkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueRemarkDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueRemarkDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ClueRemarkDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsActivityRelationDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsActivityRelationDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsActivityRelationDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsActivityRelationDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsRemarkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsRemarkDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsRemarkDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/ContactsRemarkDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerRemarkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerRemarkDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerRemarkDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/CustomerRemarkDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranHistoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranHistoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranHistoryDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao/TranHistoryDao.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ClueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/ClueService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/ActivityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/ActivityServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/ClueServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/service/impl/ClueServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/web/controller/ClueServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/web/controller/ClueServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/workbench/clue/convert.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/workbench/clue/convert.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/workbench/clue/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/workbench/clue/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/workbench/clue/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/workbench/clue/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/workbench/transaction/save.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/workbench/transaction/save.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/hz/crm/tests/TestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/hz/crm/tests/TestMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,16 +112,34 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/hz/crm/workbench/dao" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\idea\wokrspaceforCrm\crm\src\main\resources" />
+      <recent name="E:\idea\wokrspaceforCrm\crm\src\main\webapp\jquery" />
       <recent name="E:\idea\wokrspaceforCrm\crm\src\main\java\com\hz\crm\workbench\dao" />
       <recent name="E:\idea\wokrspaceforCrm\crm\src\main\java\com\hz\crm\workbench\domain" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.56">
+    <configuration name="TestMain.TestInsertCustomerAndContactsByClueId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="crm" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hz.crm.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hz.crm.tests" />
+      <option name="MAIN_CLASS_NAME" value="com.hz.crm.tests.TestMain" />
+      <option name="METHOD_NAME" value="TestInsertCustomerAndContactsByClueId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 9.0.56" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.56" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="BROWSER_ID" value="37cae5b9-e8b2-4949-9172-aafa37fbc09c" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
@@ -185,6 +229,15 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.TestMain.TestInsertCustomerAndContactsByClueId" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.56" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestMain.TestInsertCustomerAndContactsByClueId" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -196,7 +249,9 @@
       <updated>1644381317937</updated>
       <workItem from="1644381319168" duration="1823000" />
       <workItem from="1644383293396" duration="39000" />
-      <workItem from="1644383343632" duration="92411000" />
+      <workItem from="1644383343632" duration="118293000" />
+      <workItem from="1644855033618" duration="4620000" />
+      <workItem from="1644896901924" duration="24131000" />
     </task>
     <task id="LOCAL-00001" summary="测试">
       <created>1644383861236</created>
@@ -254,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644660263536</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="更新5.0">
+      <created>1644749644567</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1644749644567</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +352,7 @@
     <MESSAGE value="更新2.0" />
     <MESSAGE value="更新3.0" />
     <MESSAGE value="更新4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新4.0" />
+    <MESSAGE value="更新5.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新5.0" />
   </component>
 </project>

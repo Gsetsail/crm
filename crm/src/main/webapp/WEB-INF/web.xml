@@ -88,6 +88,20 @@
         <url-pattern>/workbench/clue/getActivityList.do</url-pattern>
         <url-pattern>/workbench/clue/insertRelation.do</url-pattern>
         <url-pattern>/workbench/clue/getActivityListByLike.do</url-pattern>
+        <url-pattern>/workbench/clue/convert.do</url-pattern>
+    </servlet-mapping>
+    <!--交易控制器-->
+    <servlet>
+        <servlet-name>tranServlet</servlet-name>
+        <servlet-class>com.hz.crm.workbench.web.controller.TranServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>tranServlet</servlet-name>
+        <url-pattern>/workbench/tran/getUserList.do</url-pattern>
+        <url-pattern>/workbench/tran/getActivityList.do</url-pattern>
+        <url-pattern>/workbench/tran/getContactsList.do</url-pattern>
+        <url-pattern>/workbench/tran/insertTran.do</url-pattern>
+        <url-pattern>/workbench/tran/getCustomerName.do</url-pattern>
     </servlet-mapping>
     <!--字典控制器-->
     <servlet>
